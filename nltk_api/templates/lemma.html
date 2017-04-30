@@ -1,0 +1,82 @@
+{% extends 'layout.html' %}
+{% block page_title %}NLTK 3.0 Simple API - Lemma Endpoint{% endblock %}
+{% block title %}Lemmatization{% endblock %}
+{% block content %}
+<p>This endpoint will attempt to return the <a href="https://en.wikipedia.org/wiki/Lemmatisation">lemma</a> of each provided word.</p>
+<div class="well code">{{ 'POST  /lemma' }}</div>
+<h2>Expected input</h2>
+<div class="alert alert-info">The request payload must be <strong>a valid JSON</strong>.</div>
+<code>
+[
+  {"word":"word1", "type":"noun"},
+  {"word":"word2", "type":"verb"},
+  {"word":"word3", "type":"all"}
+]
+</code>
+<ul>
+    <li><strong>'word'</strong> - the word to lemmatize.</li>
+    <li><strong>'type'</strong> - part of speech. Available values: noun, verb, adjective, adverb, all where the last one will produce results for any kind of speech for the corresponding word.</li>
+</ul>
+<div class="alert alert-info"><strong>Word</strong> can be more complicated. Use <strong>_</strong> to indicate spaces in the word. Example: lock in => <em>lock_in</em></div>
+<h3>Example - lemmatization</h3>
+<h4>Request</h4>
+<div class="well code">POST localhost:5000/lemma</div>
+<h4>Response</h4>
+<div class="alert alert-info"><strong>Time</strong> is expressed in seconds</div>
+<code>
+{
+    "query": [
+        {
+            "type": "noun",
+            "word": "cupcakes"
+        },
+        {
+            "type": "verb",
+            "word": "jogging"
+        },
+        {
+            "type": "all",
+            "word": "working"
+        }
+    ],
+    "results": [
+        {
+            "result": {
+                "lemma": "cupcake",
+                "type": "noun"
+            },
+            "word": "cupcakes"
+        },
+        {
+            "result": {
+                "lemma": "jog",
+                "type": "verb"
+            },
+            "word": "jogging"
+        },
+        {
+            "result": [
+                {
+                    "lemma": "working",
+                    "type": "adjective"
+                },
+                {
+                    "lemma": "work",
+                    "type": "verb"
+                },
+                {
+                    "lemma": "working",
+                    "type": "noun"
+                },
+                {
+                    "lemma": "working",
+                    "type": "adverb"
+                }
+            ],
+            "word": "working"
+        }
+    ],
+    "time": 0.00021886825561523438
+}
+</code>
+{% endblock %}

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{% block page_title %}NLTK 3.0 Simple API{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap core CSS -->
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='sidebar.css') }}">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.js"></script>
+      <script src="http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <body>
+
+    <div id="wrapper" class="toggled">
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="{{ url_for('index') }}">
+                        NLTK 3.0 Simple API
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url_for('doc_definition') }}">Dictionary</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('doc_similar') }}">Similar</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('doc_lemmatization') }}">Lemmatization</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('about') }}">About</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+
+            <div class="container-fluid">
+                <div class="row">
+
+                    <div class="col-lg-12">
+                        <h1>{% block title %}NLTK 3.0 Simple API{% endblock %}</h1>
+                        {% block content %}
+                        <p>Welcome to the index page.</p>
+                        <p>This is just a short documentation on how to use this tool. Please, pick one of the items in the navigation to get details on an endpoint.</p>
+                        {% endblock %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
+  </body>
+</html>

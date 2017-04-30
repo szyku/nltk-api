@@ -1,0 +1,127 @@
+{% extends 'layout.html' %}
+{% block page_title %}NLTK 3.0 Simple API - Similar Endpoint{% endblock %}
+{% block title %}Similar{% endblock %}
+{% block content %}
+<h2>Endpoint</h2>
+<p>This endpoint will return definitions that are matching or similar in meaning to the queried word. For exact search, use <a href="{{ url_for('doc_definition') }}">definition endpoint</a>.</p>
+<div class="well code">{{ 'GET  /similar/<string:word>[/<string:part_of_speech>]' }}</div>
+<h2>Expected input</h2>
+<ul>
+    <li><strong>'string:word'</strong> - the word to look up in the dictionary.</li>
+    <li><strong>'string:part_of_speech'</strong> - optional. If provided, the dictionary will look only for this type of speech definitions. Available option: noun, verb, adjective, adverb.</li>
+</ul>
+<div class="alert alert-info"><strong>Word</strong> can be more complicated. Use <strong>_</strong> to indicate spaces in the word. Example: lock in => <em>lock_in</em></div>
+<div class="alert alert-info">If part_of_speech is omitted, all parts will be returned.</div>
+<h3>Example - savage, no restrictions for part of speech</h3>
+<h4>Request</h4>
+<div class="well code">GET localhost:5000/similar/savage</div>
+<h4>Response</h4>
+<div class="alert alert-info"><strong>Time</strong> is expressed in seconds</div>
+<code>
+{
+  "results": [
+    {
+      "definition": "A member of an uncivilized people",
+      "partOfSpeech": "noun",
+      "word": "savage"
+    },
+    {
+      "definition": "A cruelly rapacious person",
+      "partOfSpeech": "noun",
+      "word": "beast"
+    },
+    {
+      "definition": "Attack brutally and fiercely",
+      "partOfSpeech": "verb",
+      "word": "savage"
+    },
+    {
+      "definition": "Criticize harshly or violently",
+      "partOfSpeech": "verb",
+      "word": "savage"
+    },
+    {
+      "definition": "(of persons or their actions) able or disposed to inflict pain or suffering",
+      "partOfSpeech": "adjective",
+      "word": "barbarous"
+    },
+    {
+      "definition": "Wild and menacing",
+      "partOfSpeech": "adjective",
+      "word": "feral"
+    },
+    {
+      "definition": "Without civilizing influences",
+      "partOfSpeech": "adjective",
+      "word": "barbarian"
+    },
+    {
+      "definition": "Marked by extreme and violent energy",
+      "partOfSpeech": "adjective",
+      "word": "ferocious"
+    }
+  ],
+  "time": 0.00021505355834960938,
+  "word": "savage"
+}
+</code>
+<h3>Example - lock, restrict to verbs</h3>
+<h4>Request</h4>
+<div class="well code">GET localhost:5000/definition/lock/verb</div>
+<h4>Response</h4>
+<div class="alert alert-info"><strong>Time</strong> is expressed in seconds</div>
+<code>
+{
+  "partOfSpeech": "verb",
+  "results": [
+    {
+      "definition": "Fasten with a lock",
+      "partOfSpeech": "verb",
+      "word": "lock"
+    },
+    {
+      "definition": "Keep engaged",
+      "partOfSpeech": "verb",
+      "word": "engage"
+    },
+    {
+      "definition": "Become rigid or immoveable",
+      "partOfSpeech": "verb",
+      "word": "lock"
+    },
+    {
+      "definition": "Hold in a locking position",
+      "partOfSpeech": "verb",
+      "word": "lock"
+    },
+    {
+      "definition": "Become engaged or intermeshed with one another",
+      "partOfSpeech": "verb",
+      "word": "interlock"
+    },
+    {
+      "definition": "Hold fast (in a certain state)",
+      "partOfSpeech": "verb",
+      "word": "lock"
+    },
+    {
+      "definition": "Place in a place where something cannot be removed or someone cannot escape",
+      "partOfSpeech": "verb",
+      "word": "lock in"
+    },
+    {
+      "definition": "Pass by means through a lock in a waterway",
+      "partOfSpeech": "verb",
+      "word": "lock"
+    },
+    {
+      "definition": "Build locks in order to facilitate the navigation of vessels",
+      "partOfSpeech": "verb",
+      "word": "lock"
+    }
+  ],
+  "time": 0.00021004676818847656,
+  "word": "lock"
+}
+</code>
+{% endblock %}

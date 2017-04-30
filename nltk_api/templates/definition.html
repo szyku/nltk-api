@@ -1,0 +1,125 @@
+{% extends 'layout.html' %}
+{% block page_title %}NLTK 3.0 Simple API - Definition Endpoint{% endblock %}
+{% block title %}Definition{% endblock %}
+{% block content %}
+<h2>Endpoint</h2>
+<p>This endpoint will return definitions that are matching the word. It will not return close or similar words. For that, use <a href="{{ url_for('doc_similar') }}">similar endpoint</a>.</p>
+<div class="well code">{{ 'GET  /definition/<string:word>[/<string:part_of_speech>]' }}</div>
+<h2>Expected input</h2>
+<ul>
+    <li><strong>'string:word'</strong> - the word to look up in the dictionary.</li>
+    <li><strong>'string:part_of_speech'</strong> - optional. If provided, the dictionary will look only for this type of speech definitions. Available option: noun, verb, adjective, adverb.</li>
+</ul>
+<div class="alert alert-info"><strong>Word</strong> can be more complicated. Use <strong>_</strong> to indicate spaces in the word. Example: lock in => <em>lock_in</em></div>
+<div class="alert alert-info">If part_of_speech is omitted, all parts will be returned.</div>
+<h3>Example - savage, no restrictions for part of speech</h3>
+<h4>Request</h4>
+<div class="well code">GET localhost:5000/definition/savage</div>
+<h4>Response</h4>
+<div class="alert alert-info"><strong>Time</strong> is expressed in seconds</div>
+<code>
+{
+  "results": [
+    {
+      "definition": "A member of an uncivilized people",
+      "partOfSpeech": "noun",
+      "word": "savage"
+    },
+    {
+      "definition": "Attack brutally and fiercely",
+      "partOfSpeech": "verb",
+      "word": "savage"
+    },
+    {
+      "definition": "Criticize harshly or violently",
+      "partOfSpeech": "verb",
+      "word": "savage"
+    }
+  ],
+  "time": 0.002023935317993164,
+  "word": "savage"
+}
+</code>
+<h3>Example - cat-o'-nine-tails</h3>
+<h4>Request</h4>
+<div class="well code">GET localhost:5000/definition/cat-o'-nine-tails</div>
+<h4>Response</h4>
+<code>
+{
+  "results": [
+    {
+      "definition": "A whip with nine knotted cords",
+      "partOfSpeech": "noun",
+      "word": "cat-o'-nine-tails"
+    }
+  ],
+  "time": 0.0006010532379150391,
+  "word": "cat-o'-nine-tails"
+}
+</code>
+<h3>Example - lock in</h3>
+<h4>Request</h4>
+<div class="well code">GET localhost:5000/definition/lock_in</div>
+<h4>Response</h4>
+<code>
+{
+  "results": [
+    {
+      "definition": "Close with or as if with a tight seal",
+      "partOfSpeech": "verb",
+      "word": "lock in"
+    },
+    {
+      "definition": "Place in a place where something cannot be removed or someone cannot escape",
+      "partOfSpeech": "verb",
+      "word": "lock in"
+    }
+  ],
+  "time": 0.00014495849609375,
+  "word": "lock in"
+}
+</code>
+<h3>Example - lock, restrict to verbs</h3>
+<h4>Request</h4>
+<div class="well code">GET localhost:5000/definition/lock/verb</div>
+<h4>Response</h4>
+<code>
+{
+  "partOfSpeech": "verb",
+  "results": [
+    {
+      "definition": "Fasten with a lock",
+      "partOfSpeech": "verb",
+      "word": "lock"
+    },
+    {
+      "definition": "Become rigid or immoveable",
+      "partOfSpeech": "verb",
+      "word": "lock"
+    },
+    {
+      "definition": "Hold in a locking position",
+      "partOfSpeech": "verb",
+      "word": "lock"
+    },
+    {
+      "definition": "Hold fast (in a certain state)",
+      "partOfSpeech": "verb",
+      "word": "lock"
+    },
+    {
+      "definition": "Pass by means through a lock in a waterway",
+      "partOfSpeech": "verb",
+      "word": "lock"
+    },
+    {
+      "definition": "Build locks in order to facilitate the navigation of vessels",
+      "partOfSpeech": "verb",
+      "word": "lock"
+    }
+  ],
+  "time": 0.00014090538024902344,
+  "word": "lock"
+}
+</code>
+{% endblock %}
