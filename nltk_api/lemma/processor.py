@@ -12,7 +12,7 @@ POS = {
 def assert_correct_format(candidate):
     if not isinstance(candidate, dict):
         raise TypeError('The value should ba dictionary.')
-    if not candidate.has_key('word') or not candidate.has_key('type'):
+    if 'word' not in candidate or 'type' not in candidate:
         raise KeyError('Mandatory keys are missing. Expecting word and type keys.')
 
 
@@ -31,7 +31,7 @@ class LemmaProcessor(object):
 
     def all_lemma(self, word=''):
         output = []
-        for word_type_str, val in POS.iteritems():
+        for word_type_str, val in POS.items():
             output.append(self.lemma(word, word_type_str))
 
         return output

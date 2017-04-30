@@ -1,3 +1,4 @@
 gevent
 nltk
+nose
 flask >= 0.12.0

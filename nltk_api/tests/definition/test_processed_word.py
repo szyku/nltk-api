@@ -5,7 +5,7 @@ from nltk.corpus.reader.wordnet import NOUN, ADV, ADJ, ADJ_SAT, VERB
 from nltk_api.definition.processed_word import ProcessedWord
 
 
-class ProcessedWordTest(unittest.TestCase):
+class ProcessedWordTestCase(unittest.TestCase):
     def testSysnetWordDissect(self):
         test_string = 'cat.n.1'
         test_subject = ProcessedWord(test_string)
@@ -42,11 +42,3 @@ class ProcessedWordTest(unittest.TestCase):
 
         test_obj = ProcessedWord('noun.n.1')
         self.assertRaises(TypeError, test_obj.is_part_of_speech('q'))
-
-
-def main():
-    unittest.main()
-
-
-if __name__ == '__main__':
-    main()
