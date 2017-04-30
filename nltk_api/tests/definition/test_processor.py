@@ -6,7 +6,7 @@ from nltk_api.definition.processor import DefinitionProcessor
 from nltk_api.definition.processed_word import ProcessedWord
 
 
-class DefinitionProcessorTest(unittest.TestCase):
+class DefinitionProcessorTestCase(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls._processor = DefinitionProcessor()
