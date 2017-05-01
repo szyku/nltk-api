@@ -8,14 +8,14 @@
 <div class="alert alert-info">The request payload must be <strong>a valid JSON</strong>.</div>
 <code>
 [
-  {"word":"word1", "type":"noun"},
-  {"word":"word2", "type":"verb"},
-  {"word":"word3", "type":"all"}
+  {"word":"word1", "partOfSpeech":"noun"},
+  {"word":"word2", "partOfSpeech":"verb"},
+  {"word":"word3", "partOfSpeech":"all"}
 ]
 </code>
 <ul>
     <li><strong>'word'</strong> - the word to lemmatize.</li>
-    <li><strong>'type'</strong> - part of speech. Available values: noun, verb, adjective, adverb, all where the last one will produce results for any kind of speech for the corresponding word.</li>
+    <li><strong>'partOfSpeech'</strong> - part of speech. Available values: noun, verb, adjective, adverb, all where the last one will produce results for any kind of speech for the corresponding word.</li>
 </ul>
 <div class="alert alert-info"><strong>Word</strong> can be more complicated. Use <strong>_</strong> to indicate spaces in the word. Example: lock in => <em>lock_in</em></div>
 <h3>Example - lemmatization</h3>
@@ -27,15 +27,15 @@
 {
     "query": [
         {
-            "type": "noun",
+            "partOfSpeech": "noun",
             "word": "cupcakes"
         },
         {
-            "type": "verb",
+            "partOfSpeech": "verb",
             "word": "jogging"
         },
         {
-            "type": "all",
+            "partOfSpeech": "all",
             "word": "working"
         }
     ],
@@ -43,14 +43,14 @@
         {
             "result": {
                 "lemma": "cupcake",
-                "type": "noun"
+                "partOfSpeech": "noun"
             },
             "word": "cupcakes"
         },
         {
             "result": {
                 "lemma": "jog",
-                "type": "verb"
+                "partOfSpeech": "verb"
             },
             "word": "jogging"
         },
@@ -58,19 +58,19 @@
             "result": [
                 {
                     "lemma": "working",
-                    "type": "adjective"
+                    "partOfSpeech": "adjective"
                 },
                 {
                     "lemma": "work",
-                    "type": "verb"
+                    "partOfSpeech": "verb"
                 },
                 {
                     "lemma": "working",
-                    "type": "noun"
+                    "partOfSpeech": "noun"
                 },
                 {
                     "lemma": "working",
-                    "type": "adverb"
+                    "partOfSpeech": "adverb"
                 }
             ],
             "word": "working"

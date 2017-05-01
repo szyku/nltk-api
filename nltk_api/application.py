@@ -60,9 +60,9 @@ def lemmas():
     processor = LemmaProcessor()
 
     for entry in payload:
-        if entry["type"] != "all":
-            builder.add_entry(entry["word"], processor.lemma(entry["word"], entry["type"]))
-        elif entry["type"] == "all":
+        if entry["partOfSpeech"] != "all":
+            builder.add_entry(entry["word"], processor.lemma(entry["word"], entry["partOfSpeech"]))
+        elif entry["partOfSpeech"] == "all":
             builder.add_entry(entry["word"], processor.all_lemma(entry["word"]))
         else:
             continue
