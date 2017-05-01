@@ -1,4 +1,4 @@
-# Simple NLTK API
+# Simple NLTK API [![Build Status](https://travis-ci.org/szyku/nltk-api.svg?branch=master)](https://travis-ci.org/szyku/nltk-api)
 
 Simple python's NLTK API. Provides lexical functionalities like dictionary, synonyms, and lemmatization.
 
