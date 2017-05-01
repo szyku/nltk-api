@@ -4,5 +4,6 @@ python:
 cache: pip
 install:
   - pip install -r nltk_api/requirements.txt
+  - python -W ignore -m nltk.downloader wordnet
 script:
   - nosetests
