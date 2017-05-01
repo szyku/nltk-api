@@ -14,7 +14,7 @@ class LemmaProcessorTestCase(unittest.TestCase):
 
     def testProducesLemma(self):
         actual = self._processor.lemma('jogging', 'verb')
-        expected = {'lemma': 'jog', 'type': 'verb'}
+        expected = {'lemma': 'jog', 'partOfSpeech': 'verb'}
 
         self.assertDictEqual(actual, expected)
 

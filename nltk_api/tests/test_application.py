@@ -46,7 +46,7 @@ class ApplicationTestCase(unittest.TestCase):
 
     def testLemmaEndpoint(self):
         # Check happy path
-        post_payload = '[{"word": "jogging", "type": "verb"}]'
+        post_payload = '[{"word": "jogging", "partOfSpeech": "verb"}]'
         result = self.app.post('/lemma', headers={'Content-Type': 'application/json'}, data=post_payload)
         self.assertEqual(result.status, '200 OK')
         self.assertIn(b'"lemma": "jog"', result.data)
