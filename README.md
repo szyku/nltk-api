@@ -13,6 +13,10 @@ docker run --rm -d -p 5000:5000 szyku/nltk-api
 
 If you do not want to use the docker image you can always install the requirements.txt and setup an virtualenv for python 3.6.1. You can find a guide in [this repo's wiki](https://github.com/szyku/nltk-api/wiki/How-to-develop#setup)
 
+### Implemented clients
+
+* PHP - [szyku/php-nltk-client](https://github.com/szyku/php-nltk-client)
+
 ### Endpoints
 
 A full description of the available endpoints can be found [here](https://github.com/szyku/nltk-api/wiki/API-Description)
