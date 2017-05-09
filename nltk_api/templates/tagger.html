@@ -1,0 +1,140 @@
+{% extends 'layout.html' %}
+{% block page_title %}NLTK 3.0 Simple API - Tagger Endpoint{% endblock %}
+{% block title %}Tagger{% endblock %}
+{% block content %}
+<p>This endpoint will tag sentences' items with POS tags.</p>
+<div class="well code">{{ 'POST  /tagger' }}</div>
+<h2>Expected input</h2>
+<div class="alert alert-info">The request payload must be <strong>a valid JSON</strong>.</div>
+<code>
+[
+  "I sentence to tage.",
+  "Another sentence to tag!"
+]
+
+</code>
+<div class="alert alert-info">The tagset used in this endpoint is from <a href="http://www.cis.uni-muenchen.de/~schmid/tools/TreeTagger/data/Penn-Treebank-Tagset.pdf">Penn Treebank Project</a>.</div>
+<div class="alert alert-info">You can append <strong>symbols</strong> to the query string. The API will return POS tags that are used in <a href="http://www.cis.uni-muenchen.de/~schmid/tools/TreeTagger/data/Penn-Treebank-Tagset.pdf">Penn treebank tagset</a> instead of the descriptive strings.</div>
+<h3>Example - tagging with Penn symbols</h3>
+<h4>Request</h4>
+<div class="well code">POST localhost:5000/lemma?symbols</div>
+<h4>Response</h4>
+<div class="alert alert-info"><strong>Time</strong> is expressed in seconds</div>
+<code>
+{
+    "input": [
+        "I yelled at him, but he didn't listen..."
+    ],
+    "results": [
+        [
+            {
+                "item": "I",
+                "partOfSpeech": "PRP"
+            },
+            {
+                "item": "yelled",
+                "partOfSpeech": "VBD"
+            },
+            {
+                "item": "at",
+                "partOfSpeech": "IN"
+            },
+            {
+                "item": "him",
+                "partOfSpeech": "PRP"
+            },
+            {
+                "item": ",",
+                "partOfSpeech": ","
+            },
+            {
+                "item": "but",
+                "partOfSpeech": "CC"
+            },
+            {
+                "item": "he",
+                "partOfSpeech": "PRP"
+            },
+            {
+                "item": "did",
+                "partOfSpeech": "VBD"
+            },
+            {
+                "item": "n't",
+                "partOfSpeech": "RB"
+            },
+            {
+                "item": "listen",
+                "partOfSpeech": "VB"
+            },
+            {
+                "item": "...",
+                "partOfSpeech": ":"
+            }
+        ]
+    ],
+    "time": 0.0009036064147949219
+}
+</code>
+<h3>Example - tagging with descriptive strings</h3>
+<h4>Request</h4>
+<div class="well code">POST localhost:5000/lemma</div>
+<h4>Response</h4>
+<div class="alert alert-info"><strong>Time</strong> is expressed in seconds</div>
+<code>
+{
+    "input": [
+        "I yelled at him, but he didn't listen..."
+    ],
+    "results": [
+        [
+            {
+                "item": "I",
+                "partOfSpeech": "pronoun_personal"
+            },
+            {
+                "item": "yelled",
+                "partOfSpeech": "verb_past"
+            },
+            {
+                "item": "at",
+                "partOfSpeech": "prep_or_conj_subordinating"
+            },
+            {
+                "item": "him",
+                "partOfSpeech": "pronoun_personal"
+            },
+            {
+                "item": ",",
+                "partOfSpeech": "comma"
+            },
+            {
+                "item": "but",
+                "partOfSpeech": "conj_coordinating"
+            },
+            {
+                "item": "he",
+                "partOfSpeech": "pronoun_personal"
+            },
+            {
+                "item": "did",
+                "partOfSpeech": "verb_past"
+            },
+            {
+                "item": "n't",
+                "partOfSpeech": "adverb"
+            },
+            {
+                "item": "listen",
+                "partOfSpeech": "verb_base"
+            },
+            {
+                "item": "...",
+                "partOfSpeech": "colon_ellipsis"
+            }
+        ]
+    ],
+    "time": 0.0009620189666748047
+}
+</code>
+{% endblock %}
