@@ -70,6 +70,21 @@ def lemmas():
     return builder.build()
 
 
+@app.route('/tagger', methods=['POST'])
+@json_response_with_time
+def tagger():
+    payload = request.get_json()
+    if not all(isinstance(entry, str) for entry in payload):
+        return BadRequest("Incorrect format of entered data. Expects JSON array with strings.")
+    from nltk_api.tag.sentence import tag_sentences
+    from nltk_api.tag.response import TaggerResponseBuilder
+    show_symbols = request.args.get('symbols', None) is not None
+    result = tag_sentences(payload, show_symbols)
+    builder = TaggerResponseBuilder(payload, result)
+
+    return builder.build()
+
+
 @app.route('/doc/definition', methods=['GET'])
 def doc_definition():
     return render_template('definition.html')
@@ -78,6 +93,11 @@ def doc_definition():
 @app.route('/doc/lemmatization', methods=['GET'])
 def doc_lemmatization():
     return render_template('lemma.html')
+
+
+@app.route('/doc/tagger', methods=['GET'])
+def doc_tagger():
+    return render_template('tagger.html')
 
 
 @app.route('/doc/similar', methods=['GET'])

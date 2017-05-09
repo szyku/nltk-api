@@ -15,7 +15,7 @@ WORKDIR /app
 
 RUN apk add --no-cache gcc musl-dev linux-headers && \
     pip install -U nltk && \
-    python -W ignore -m nltk.downloader wordnet && \
+    python -W ignore -m nltk.downloader wordnet punkt averaged_perceptron_tagger && \
     pip install -r ./nltk_api/requirements.txt && \
     apk del linux-headers musl-dev gcc wget ca-certificates libstdc++ mpc1 mpfr3 pkgconfig pkgconf libgcc libgomp isl gmp binutils binutils-libs
 
